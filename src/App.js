@@ -11,6 +11,7 @@ class App extends Component {
     constructor(props) {
       super(props);
       this.state = {
+        //product
         products: [
           {
             id: 1,
@@ -42,7 +43,9 @@ class App extends Component {
           }
         ],
         isActive: true,
-        color: 'green',
+
+        //change-color-font
+        color: 'red',
         fontSize: 12
       }     
     }
@@ -156,7 +159,7 @@ class App extends Component {
           <div className="container">
             <Header />
             <div className="row padding-top-50 change_color_font ">
-              <ColorPicker color={this.state.color} onReceiveColor ={this.onSetColor} />
+              <ColorPicker color={this.state.color} onReceiveColor = {this.onSetColor} />
               <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font_setting">
                 <SizeSetting 
                   fontSize={this.state.fontSize} 
