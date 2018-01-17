@@ -27,17 +27,87 @@
   to { transform: rotate(360deg); }
 }
 
-span {
-  padding: 10px 20px;
-  margin: 10px;
+.color-section span {
+  width: 40px;
+  height: 40px;
+  margin: 0 10px;
+  display: inline-block;
+  vertical-align: top;
   cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
-.active {
-  border: solid 3px black;
+.color-section span.active{
+  border-color: black;
 }
 
-#content {
+.panel-body {
+  padding: 30px 15px;
+  min-height: 100px;
+}
+
+.result-section #content {
   padding: 10px;
-  border: solid 3px red;
+  border: solid 1px red;
+  border-radius: 4px;
+  padding: 20px 15px;
 }
+
+
+.padding-top-100 {
+  margin-top: 100px;
+} 
+
+.padding-top-50 {
+  margin-top: 50px;
+} 
+
+.font_setting button {
+  padding: 0 15px;
+  height: 40px;
+}
+
+.font_setting button + button {
+  margin-left: 20px;
+}
+
+.result-section span {
+  font-weight: 700;
+}
+
+.table-section {
+  padding: 0 15px;
+}
+
+.table-section button {
+  margin-top: 20px;
+}
+
+.table-section table {
+  width: 50%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.table-section table th, 
+.table-section table td {
+  border: 1px solid #ddd;
+  text-align: center;
+  padding: 15px;
+}
+
+.table-bordered>thead>tr>td, 
+.table-bordered>thead>tr>th {
+  border-bottom-width: 1px;
+}
+
+.product-item {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.product-item .caption {
+  text-align: center;
+}
+

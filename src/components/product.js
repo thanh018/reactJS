@@ -8,20 +8,20 @@ class Product extends Component {
     // }
     
     onAddToCart = () => {
-      alert(this.props.children + ' - ' + this.props.price);
+      alert(this.props.children + ' - ' + this.props.price + '$');
     }
     render() {
       return (
-        <div className="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+        <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3">
           <div className="thumbnail">
             <img src={this.props.image} alt={this.props.name}/>
             <div className="caption">
               <h3>
                 {this.props.children}
               </h3>
-              <h2>
-                  {this.props.price}
-              </h2>
+              <h3>
+                  {this.props.price}$
+              </h3>
               <p>
                 {this.props.description}
               </p>

@@ -7,66 +7,69 @@ import SizeSetting from './components/SizeSetting';
 import Result from './components/Result';
 import Reset from './components/Reset';
 
-
 class App extends Component {
-    
-
-
-    onClick(){
-      console.log('This a icon block');
-    }
-
     constructor(props) {
       super(props);
       this.state = {
         products: [
           {
             id: 1,
-            name: 'iphone 7 plus back',
-            price: 1500000,
-            image: 'https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/iphone-7-plus-1.jpg',
+            name: 'iPhone 5s',
+            price: 400,
+            image: 'images/iphone5s.jpg',
             status: true
           },
           {
             id: 2,
-            name: 'iphone 8 plus gold',
-            price: 1500000,
-            image: 'https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/iphone-7-plus-1.jpg',
+            name: 'iPhone 6s',
+            price: 500,
+            image: 'images/iphone5s.jpg',
             status: false
           },
           {
             id: 3,
-            name: 'iphone 10 back',
-            price: 1500000,
-            image: 'https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/iphone-7-plus-1.jpg',
+            name: 'iPhone 7',
+            price: 600,
+            image: 'images/iphone5s.jpg',
             status: true
           },
           {
             id: 4,
-            name: 'iphone 6 back',
-            price: 1500000,
-            image: 'https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/iphone-7-plus-1.jpg',
+            name: 'iPhone 8',
+            price: 700,
+            image: 'images/iphone5s.jpg',
             status: true
           }
         ],
         isActive: true,
         color: 'green',
-        fontSize: 15
+        fontSize: 12
+      }     
+    }
+
+    onSetColor = (params) => {
+      this.setState({
+        color: params
+      });
+      console.log(params);
+    }
+
+    onChangeSize =(value) => {
+      this.setState({
+        fontSize: (this.state.fontSize + value >= 8 && this.state.fontSize + value <= 36) ? this.state.fontSize + value : this.state.fontSize
+      });
+    }
+
+    onSettingDefault = (value) => {
+      if(true) {
+        this.setState({
+          color: 'green',
+          fontSize: 12
+        });
       }
-      
     }
 
     onSetState = () => {
-      // if(this.state.isActive === true) {
-      //   this.setState({
-      //     isActive : false
-      //   });
-      // } else {
-      //   this.setState({
-      //     isActive : true
-      //   });
-      // }
-
       this.setState({
         isActive : !this.state.isActive
       });
@@ -75,39 +78,54 @@ class App extends Component {
     onAddProduct = () => {
       console.log(this.refs.name.value);
     }
+
+    onClick(){
+      console.log('This a icon block');
+    }
   render() {
+
+    // products
     var products = [
       {
+        id: 0,
+        name: 'Galaxy Note 8',
+        price: 700,
+        image: 'images/ssnote8.jpg',
+        status: true
+      },
+      {
         id: 1,
-        name: 'iphone 7 plus back',
-        price: 1500000,
-        image: 'https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/iphone-7-plus-1.jpg',
+        name: 'iPhone 5s Gray',
+        price: 400,
+        image: 'images/iphone5s.jpg',
         status: true
       },
       {
         id: 2,
-        name: 'iphone 8 plus gold',
-        price: 1500000,
-        image: 'https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/iphone-7-plus-1.jpg',
+        name: 'iPhone 6s Rose Gold',
+        price: 500,
+        image: 'images/iphone6s.jpg',
         status: false
       },
       {
         id: 3,
-        name: 'iphone 10 back',
-        price: 1500000,
-        image: 'https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/iphone-7-plus-1.jpg',
+        name: 'iPhone 7 Mate Black',
+        price: 600,
+        image: 'images/iphone7.jpg',
         status: true
       },
       {
         id: 4,
-        name: 'iphone 6 back',
-        price: 1500000,
-        image: 'https://fptshop.com.vn/Uploads/images/2015/Tin-Tuc/iphone-7-plus-1.jpg',
+        name: 'iPhone 8 White',
+        price: 700,
+        image: 'images/iphone8.jpg',
         status: true
       }
+      
     ];
 
-    let elements = products.map((product, index) => {
+    // product item
+    let elementsProduct = products.map((product, index) => {
       let result = '';
       if(product.status) {
         result = <Product
@@ -127,33 +145,32 @@ class App extends Component {
         <tr key={index}>
           <td>{product.id}</td>
           <td>{product.name}</td>
-          <td><span className="label label-success">{product.price}</span></td>
+          <td><span className="label label-success">{product.price}$</span></td>
         </tr>
       
       return result;
     });
 
     return (
-        <div>
-          <Header />
+        <div className="render-wrapper">
           <div className="container">
-            
-            <div className="row">
-              <ColorPicker color={this.state.color} />
-
-              <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                
-                <SizeSetting />
-                <Reset />
+            <Header />
+            <div className="row padding-top-50 change_color_font ">
+              <ColorPicker color={this.state.color} onReceiveColor ={this.onSetColor} />
+              <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 font_setting">
+                <SizeSetting 
+                  fontSize={this.state.fontSize} 
+                  onChangeSize={this.onChangeSize} 
+                />
+                <Reset onSettingDefault={this.onSettingDefault} />
               </div>
-
-              <Result />
+              <Result color={this.state.color} fontSize ={this.state.fontSize} />
             </div>
             
 
             
             <div className="row">
-              <div className="row">
+              <div className="padding-top-50 table-section">
                 
                 <table className="table table-bordered table-hover">
                   <thead>
@@ -174,8 +191,8 @@ class App extends Component {
                 
                 
               </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div className="padding-top-50 product-section">
+                <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                   <div className="panel panel-danger">
                       <div className="panel-heading">
                         <h3 className="panel-title">Add Product</h3>
@@ -189,8 +206,8 @@ class App extends Component {
                       </div>
                   </div>
                 </div>
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                  {elements}
+                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 padding-top-50 product-item">
+                  {elementsProduct}
                 </div>
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <button type="button" className="btn btn-warning" onClick={ this.onClick}>
